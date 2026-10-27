@@ -1,9 +1,9 @@
-import type { Plugin } from 'vite'
 import type { ResolvedSlidevOptions } from '@slidev/types'
+import type { Plugin } from 'vite'
 import { describe, expect, it } from 'vitest'
 import { createContextInjectionPlugin } from '../packages/slidev/node/vite/contextInjection'
-import { createMonacoTypesLoader } from '../packages/slidev/node/vite/monacoTypes'
 import { createSlidesLoader } from '../packages/slidev/node/vite/loaders'
+import { createMonacoTypesLoader } from '../packages/slidev/node/vite/monacoTypes'
 
 // Inspect the declarative filter rather than only the hook handler: existing
 // in-handler checks already worked, but Rolldown still called every hook.
@@ -21,7 +21,7 @@ function hookMatches(plugin: Plugin, name: 'transform' | 'resolveId' | 'load', i
   return pattern.include.test(id) && !(pattern.exclude?.test(id) ?? false)
 }
 
-describe('Vite plugin hook filters', () => {
+describe('vite plugin hook filters', () => {
   it('only injects context into user Vue component files', async () => {
     const plugin = createContextInjectionPlugin()
     expect(hookMatches(plugin, 'transform', '/project/App.vue')).toBe(true)
